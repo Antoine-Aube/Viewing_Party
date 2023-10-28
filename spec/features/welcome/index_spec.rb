@@ -12,7 +12,7 @@ RSpec.describe 'Welcome Page' do
     it 'displays the welcome page with all users, and button to register' do
       visit root_path
 
-      expect(page).to have_content('Viewing Party')
+      expect(page).to have_content('ScreenSquad')
       expect(page).to have_button('Create New User')
       expect(page).to have_content(@noelle.name)
       expect(page).to have_content(@chris.name)
