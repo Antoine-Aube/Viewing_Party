@@ -1,7 +1,16 @@
-<center><%= form_with url: login_path, method: :post do |form| %>
-  <%= form.label :email, "Email:" %>
-  <%= form.text_field :email %><br>
-  <%= form.label :password, "Password:" %>
-  <%= form.password_field :password %><br>
-  <%= form.submit "Log In" %>
-<% end %><center>
+<div class="h-screen flex items-center justify-center bg-gray-900">
+
+<%= form_with(url: login_path, method: :post, local: true, class: "bg-gray-800 p-6 rounded-lg") do |f| %>
+  <div class="mb-4">
+    <%= f.label :email, class: "block text-green-400 mb-2 font-roboto" %>
+    <%= f.text_field :email, class: "w-full p-2 rounded bg-gray-700 text-green-400 placeholder-green-300" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :password, class: "block text-green-400 mb-2 font-roboto" %>
+    <%= f.password_field :password, class: "w-full p-2 rounded bg-gray-700 text-green-400 placeholder-green-300" %>
+  </div>
+  <div class="text-center">
+    <%= f.submit "Login", class: "px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500" %>
+  </div>
+</div>
+<% end %>
