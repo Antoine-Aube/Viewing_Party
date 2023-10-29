@@ -8,17 +8,40 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src = "https://cdn.tailwindcss.com"></script>
+      <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter var', ...defaultTheme.fontFamily.sans]
+            'roboto': ['Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
   </head>
-
-  <center><h1>ScreenSquad</h1></center>
+  <div class="text-center">
+    <h1 class="text-5xl text-green-500 font-bold font-family:nunito" >ScreenSquad</h1>
+  </div>
   <body>
-  <center>
-  <table>
-    <tbody>
-        <td><%= link_to "Home", "/"  %></td>
-    </tbody>
-  </table>
-  </center>
+   <div class="flex justify-between items-center bg-gray-500 p-4">
+  <div class="flex items-center space-x-4">
+    <% unless current_user %>
+      <%= link_to "Create New User", "/register/new", method: :get, class: "px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500" %>
+      <%= link_to "Log In", login_form_path, class: "px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500" %>
+    <% end %>
+    <%= link_to "Home", "/", class: "px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500" %>
+  </div>
+  
+  <% if current_user %>
+    <div class="flex items-center space-x-4 text-green-400">
+      <p>Currently logged in as <%= current_user.email %></p>
+      <%= link_to "Log out", logout_path, class: "px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500" %>
+    </div>
+  <% end %>
+</div>
   <% flash.each do |type, msg| %>
       <div class="alert-info">
         <%= msg %>

@@ -1,14 +1,8 @@
-<br><center><%= button_to "Create New User", "/register/new", method: :get%>
-
-<% if current_user %>
-  <p> currently logged in as <%= current_user.email %> </p>
-  <%= link_to "Log out", logout_path %>
-<% end %>
-<br>
-
-<%= link_to "Log In", login_form_path %>
-
-<% @users.each do |user| %>
-  <p><%= link_to user.name, "/users/#{user.id}" %></p>
-<%end %>
-</ul>
+<div class="text-center">
+  <h1 class="text-5xl text-green-500 font-bold text-teal-500">Current Users</h1>
+    <% @users.each do |user| %>
+      <ul class= "text-indigo-500">
+        <li><%= link_to user.name, "/users/#{user.id}" %></li>
+      </ul>
+    <%end %>
+</div>
