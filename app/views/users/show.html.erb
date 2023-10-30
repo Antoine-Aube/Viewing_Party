@@ -1,54 +1,57 @@
-<center><h2><%= @user.name %>'s Dashboard</h2></center>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<center><%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get %></center>
-<br>
+<div class="bg-gray-800 text-center text-white py-6 font-sans font-inter">
+  <div class="text-3xl text-green-500 font-bold mb-4">
+    <%= @user.name %>'s Dashboard
+  </div>
+</div>
 
-<section id="viewing_parties">
-  <section id="hosted">
-  <center><h3>Parties I am Hosting</h3></center>
-  <% @user.parties_i_am_hosting.each do |party| %>
-    <center id="<%= party.id %>" class="movie_section">
-      <p><%= image_tag("https://image.tmdb.org/t/p/w500#{party.find_movie.backdrop_path}") %></p>
-      <p><b><%= link_to party.find_movie.title, "/users/#{@user.id}/movies/#{party.find_movie.id}" %></b></p>
-      <p><b>Day:</b> <%= party.day %></p>
-      <p><b>Time:</b> <%= party.view_time %></p>
-      <p><b>Host:</b> <%= party.find_host(@user)%></p>
-      <p><b>Guests:</b></p>
-      <section id="guests">
-      <% party.party_guests.each do |user| %>
-        <% if user.name == @user.name %>
-          <p>-<b><%= user.name %></b>-</p>
-        <% else %>
-          <p>-<%= user.name %>-</p>
-        <% end %>
-      <% end %>
-      </section>
-    </center>
-    <br>
-  <% end %>
-  </section>
+<div class="flex flex-wrap justify-around bg-gray-900 p-6">
+  <!-- Parties I am Hosting -->
+  <div class="w-full md:w-1/2 p-4">
+    <h3 class="text-2xl font-bold mb-6 text-center text-blue-400 border-b pb-2">Parties I am Hosting</h3>
+    <% @user.parties_i_am_hosting.each do |party| %>
+      <div id="<%= party.id %>" class="bg-gray-800 p-5 m-2 border border-gray-700 rounded shadow-md hover:shadow-lg transition-shadow duration-300">
+        <%= image_tag("https://image.tmdb.org/t/p/w500#{party.find_movie.backdrop_path}", class: "w-full rounded mb-4") %>
+        <p class="font-semibold text-lg mb-2 text-white"><%= link_to party.find_movie.title, "/users/#{@user.id}/movies/#{party.find_movie.id}", class: "hover:text-green-400 transition-colors" %></p>
+        <p><b>Day:</b> <%= party.day %></p>
+        <p><b>Time:</b> <%= party.view_time %></p>
+        <p><b>Host:</b> <%= party.find_host(@user)%></p>
+        <p class="font-semibold">Guests:</p>
+        <ul>
+          <% party.party_guests.each do |user| %>
+            <% if user.name == @user.name %>
+              <li class="font-bold">-<%= user.name %></li>
+            <% else %>
+              <li>-<%= user.name %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
-  <section id="invited">
-  <center><h3>Parties I am invited to</h3></center>
-  <% @user.parties_i_am_invited_to.each do |party| %>
-    <center id="<%= party.id %>" class="movie_section">
-      <p><%= image_tag("https://image.tmdb.org/t/p/w500#{party.find_movie.backdrop_path}") %></p>
-      <p><b><%= link_to party.find_movie.title, "/users/#{@user.id}/movies/#{party.find_movie.id}" %></b></p>
-      <p><b>Day:</b> <%= party.day %></p>
-      <p><b>Time:</b> <%= party.view_time %></p>
-      <p><b>Host:</b> <%= party.find_host(@user)%></p>
-      <p><b>Guests:</b></p>
-      <section id="guests">
-      <% party.party_guests.each do |user| %>
-        <% if user.name == @user.name %>
-          <p>-<b><%= user.name %></b>-</p>
-        <% else %>
-          <p>-<%= user.name %>-</p>
-        <% end %>
-      <% end %>
-      </section>
-    </center>
-    <br>
-  <% end %>
-  </section>
-</section>
+  <!-- Parties I am Invited to -->
+  <div class="w-full md:w-1/2 p-4">
+    <h3 class="text-2xl font-bold mb-6 text-center text-purple-400 border-b pb-2">Parties I am invited to</h3>
+    <% @user.parties_i_am_invited_to.each do |party| %>
+      <div id="<%= party.id %>" class="bg-gray-800 p-5 m-2 border border-gray-700 rounded shadow-md hover:shadow-lg transition-shadow duration-300">
+        <%= image_tag("https://image.tmdb.org/t/p/w500#{party.find_movie.backdrop_path}", class: "w-full rounded mb-4") %>
+        <p class="font-semibold text-lg mb-2 text-white"><%= link_to party.find_movie.title, "/users/#{@user.id}/movies/#{party.find_movie.id}", class: "hover:text-green-400 transition-colors" %></p>
+        <p><b>Day:</b> <%= party.day %></p>
+        <p><b>Time:</b> <%= party.view_time %></p>
+        <p><b>Host:</b> <%= party.find_host(@user)%></p>
+        <p class="font-semibold">Guests:</p>
+        <ul>
+          <% party.party_guests.each do |user| %>
+            <% if user.name == @user.name %>
+              <li class="font-bold">-<%= user.name %></li>
+            <% else %>
+              <li>-<%= user.name %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
