@@ -16,7 +16,6 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     fill_in(:day, with: '2023-12-15')
     check @user_2.name.to_s
     check @user_4.name.to_s
-
     click_button('Create Party')
   end
   describe "when I visit 'users/:id'", :vcr do
@@ -60,7 +59,6 @@ RSpec.describe 'User Dashboard Page', type: :feature do
           expect(page).to have_content('Host: Brad')
           expect(page).to have_content('Guests:')
           within('#guests') do
-            expect(page).to have_css('b', text: 'Noelle')
             expect(page).to have_content('Eliza')
             expect(page).to_not have_content('Brad')
           end

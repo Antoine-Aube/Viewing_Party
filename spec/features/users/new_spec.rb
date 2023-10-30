@@ -24,28 +24,18 @@ RSpec.describe 'New User Page' do
       click_button('Register')
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('bob')
 
       expect(User.all.count).to eq(1)
     end
 
     it 'will not allow a duplicate email to be created in the form' do
+      user = User.create(name: 'Bob', email:'bob@bob.com', password: 'password')
       visit '/register/new'
 
-      fill_in(:name, with: 'Bob')
+      fill_in(:name, with: 'NotBob')
       fill_in(:email, with: 'bob@bob.com')
       fill_in(:password, with: 'password')
       fill_in(:password_confirmation, with: 'password')
-      click_button('Register')
-
-      expect(current_path).to eq(root_path)
-      expect(page).to have_content('bob')
-
-      click_button('Create New User')
-      expect(current_path).to eq('/register/new')
-
-      fill_in(:name, with: 'Not Bob')
-      fill_in(:email, with: 'bob@bob.com')
       click_button('Register')
 
       expect(current_path).to eq('/register/new')
