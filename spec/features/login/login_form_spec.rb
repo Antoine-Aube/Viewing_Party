@@ -34,7 +34,7 @@ RSpec.describe 'Login Page' do
       click_button "Login"
       expect(current_path).to eq(user_path(user))
 
-      expect(page).to have_content("Currently logged in as #{user.email}")
+      expect(page).to have_content("Logged in as #{user.email}")
     end
   end
 

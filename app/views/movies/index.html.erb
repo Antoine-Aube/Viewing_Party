@@ -1,11 +1,10 @@
-<center><h1>Discover Movies</h1></center>
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white py-6">
+  <h1 class="text-3xl font-bold mb-6">Discover Movies</h1>
 
-<center><%= button_to "Find Top Rated Movies", "/users/#{params[:id]}/movies", params: { q: "top20rated" }, method: :get %></center>
-<br>
+  <%= button_to "Find Top Rated Movies", "/users/#{params[:id]}/movies", params: { q: "top20rated" }, method: :get, class: "text-sm px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500 transition-colors duration-200 mb-4" %>
 
-<center>
-<%= form_with url: "/users/#{params[:id]}/movies", method: :get, data: { turbo: false } do |form| %>
-  <%= form.text_field :q, placeholder: "search" %>
-  <%= form.submit "Find Movies" %>
-<% end %>
-</center>
+  <%= form_with url: "/users/#{params[:id]}/movies", method: :get, data: { turbo: false }, class: "flex items-center space-x-4" do |form| %>
+    <%= form.text_field :q, placeholder: "Search for movies...", class: "px-3 py-1 rounded text-black" %>
+    <%= form.submit "Find Movies", class: "text-sm px-3 py-1 bg-green-400 text-gray-800 rounded hover:bg-green-500 transition-colors duration-200" %>
+  <% end %>
+</div>
