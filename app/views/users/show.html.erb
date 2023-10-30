@@ -11,8 +11,7 @@
 
 <div class="flex flex-wrap justify-around bg-gray-900 p-6">
   <!-- Parties I am Hosting -->
-  <section id="hosted">
-  <div class="w-full md:w-1/2 p-4">
+  <div id="hosted" class="w-full md:w-1/2 p-4">
     <h3 class="text-2xl font-bold mb-6 text-center text-blue-400 border-b pb-2">Parties I am Hosting</h3>
     <% @user.parties_i_am_hosting.each do |party| %>
       <div id="<%= party.id %>" class="bg-gray-800 p-5 m-2 border border-gray-700 rounded shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -37,8 +36,7 @@
   </div>
 
   <!-- Parties I am Invited to -->
-    <section id="invited">
-  <div class="w-full md:w-1/2 p-4">
+  <div id="invited" class="w-full md:w-1/2 p-4">
     <h3 class="text-2xl font-bold mb-6 text-center text-purple-400 border-b pb-2">Parties I am invited to</h3>
     <% @user.parties_i_am_invited_to.each do |party| %>
       <div id="<%= party.id %>" class="bg-gray-800 p-5 m-2 border border-gray-700 rounded shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -62,5 +60,4 @@
       </div>
     <% end %>
   </div>
-</section>
 </div>
