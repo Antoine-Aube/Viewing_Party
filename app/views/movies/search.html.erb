@@ -10,7 +10,7 @@
     <div class="w-full md:w-2/3 lg:w-1/2">
       <% @movies.each do |movie| %>
         <section id=<%= movie.id %> class="flex items-center space-x-4 bg-gray-800 p-4 mb-4 rounded hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
-          <%= link_to image_tag("https://image.tmdb.org/t/p/w92#{movie.backdrop_path}", class: "w-22 h-24 rounded", alt: "#{movie.title} poster"), "/users/#{params[:id]}/movies/#{movie.id}" %>
+          <%= link_to image_tag("https://image.tmdb.org/t/p/w92#{movie.backdrop_path}", class: "max-w-full h-auto rounded", alt: "#{movie.title} poster"), "/users/#{params[:id]}/movies/#{movie.id}" %>
           <div>
             <%= link_to movie.title, "/users/#{params[:id]}/movies/#{movie.id}", class: "text-lg hover:text-green-400 transition-colors" %>
             <p id="average" class="text-sm mt-2">Vote Average: <%= movie.vote_average %></p>

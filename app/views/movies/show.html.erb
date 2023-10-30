@@ -1,37 +1,39 @@
-<center><h1><%= @movie.title %></h1></center>
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white py-6">
 
-<center><%= button_to "Discover Page", "/users/#{params[:id]}/discover", method: :get %></center><br>
+  <h1 class="text-3xl font-bold mb-4"><%= @movie.title %></h1>
+  
+  <%= image_tag "https://image.tmdb.org/t/p/w92#{@movie.backdrop_path}", alt: @movie.title, class: "max-w-full h-auto mb-2 object-cover rounded-md" %>
 
-<center><%= button_to "Create Viewing Party for #{@movie.title}", "/users/#{params[:id]}/movies/#{@movie.id}/viewing_party/new", method: :get %></center>
 
-<center>
-<p><b>Vote:</b> <%= @movie.vote_average %></p>
-<p><b>Runtime:</b> <%= @movie.convert_time %>
-</p>
-<p><b>Genre:</b> <%= @movie.format_genres %>
-</p>
+  <%= button_to "Discover Page", "/users/#{params[:id]}/discover", method: :get, class: "text-sm px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500 transition-colors duration-200 mb-2" %>
+  
+  <%= button_to "Create Viewing Party for #{@movie.title}", "/users/#{params[:id]}/movies/#{@movie.id}/viewing_party/new", method: :get, class: "text-sm px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500 transition-colors duration-200 mb-4" %>
+  
+  <div class="text-center">
+    <p class="mb-2"><b>Vote:</b> <%= @movie.vote_average %></p>
+    <p class="mb-2"><b>Runtime:</b> <%= @movie.convert_time %></p>
+    <p class="mb-4"><b>Genre:</b> <%= @movie.format_genres %></p>
+  </div>
 
-<section id="summary">
-  <h3>Summary</h3>
-  <p><%= @movie.overview %></p>
-</section>
+  <section id="summary" class="mb-4 w-2/3">
+    <h3 class="text-xl font-semibold mb-2">Summary</h3>
+    <p><%= @movie.overview %></p>
+  </section>
 
-<section id="cast">
-  <h3>Cast</h3>
-  <p>
+  <section id="cast" class="mb-4 w-2/3 text-center">
+    <h3 class="text-xl font-semibold mb-2">Cast</h3>
     <% @cast_members.each do |member| %>
-      <p><b><%= member.name %></b> - <%= member.character %></p>
+      <p class="mb-2"><b><%= member.name %></b> - <%= member.character %></p>
     <% end %>
-  </p>
-</section>
+  </section>
 
-<p id="review-count"><b><%= @reviews.count %> Reviews</b></p>
-<section id="reviews">
-  <p>
+  <p id="review-count" class="mb-4 font-bold"><%= @reviews.count %> Reviews</p>
+
+  <section id="reviews" class="w-2/3">
     <% @reviews.each do |review| %>
-      <p><b><%= review.author %></b> - <%= review.content %></p>
-      <p>-</p>
+      <div class="mb-4">
+        <p class="font-semibold mb-2"><b><%= review.author %></b> - <%= review.content %></p>
+      </div>
     <% end %>
-  </p>
-</section>
-</center>
+  </section>
+</div>
