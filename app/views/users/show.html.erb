@@ -1,13 +1,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <div class="bg-gray-800 text-center text-white py-6 font-sans font-inter">
-  <div class="text-3xl text-green-500 font-bold mb-4">
+  <div class="text-3xl text-green-500 font-bold">
     <%= @user.name %>'s Dashboard
+  <div>
+    <%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get, class: "px-4 py-2 bg-green-400 text-gray-800 rounded hover:bg-green-500" %>
+  </div>
   </div>
 </div>
 
 <div class="flex flex-wrap justify-around bg-gray-900 p-6">
   <!-- Parties I am Hosting -->
+  <section id="hosted">
   <div class="w-full md:w-1/2 p-4">
     <h3 class="text-2xl font-bold mb-6 text-center text-blue-400 border-b pb-2">Parties I am Hosting</h3>
     <% @user.parties_i_am_hosting.each do |party| %>
@@ -19,6 +23,7 @@
         <p><b>Host:</b> <%= party.find_host(@user)%></p>
         <p class="font-semibold">Guests:</p>
         <ul>
+        <section id="guests">
           <% party.party_guests.each do |user| %>
             <% if user.name == @user.name %>
               <li class="font-bold">-<%= user.name %></li>
@@ -32,6 +37,7 @@
   </div>
 
   <!-- Parties I am Invited to -->
+    <section id="invited">
   <div class="w-full md:w-1/2 p-4">
     <h3 class="text-2xl font-bold mb-6 text-center text-purple-400 border-b pb-2">Parties I am invited to</h3>
     <% @user.parties_i_am_invited_to.each do |party| %>
@@ -43,6 +49,7 @@
         <p><b>Host:</b> <%= party.find_host(@user)%></p>
         <p class="font-semibold">Guests:</p>
         <ul>
+        <section id="guests">
           <% party.party_guests.each do |user| %>
             <% if user.name == @user.name %>
               <li class="font-bold">-<%= user.name %></li>
@@ -51,7 +58,9 @@
             <% end %>
           <% end %>
         </ul>
+        </section>
       </div>
     <% end %>
   </div>
+</section>
 </div>

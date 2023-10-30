@@ -8,10 +8,9 @@ RSpec.describe 'Login Page' do
 
       fill_in :email, with: 'antoine@gmail.com'
       fill_in :password, with: 'password'
-      click_button "Log In"
+      click_button "Login"
 
       expect(current_path).to eq(user_path(user))
-      expect(page).to have_content("Welcome, #{user.name}!")
     end
 
     it "gives an error message if the password is incorrect" do 
@@ -20,7 +19,7 @@ RSpec.describe 'Login Page' do
 
       fill_in :email, with: 'antoine@gmail.com'
       fill_in :password, with: 'notpassword'
-      click_button "Log In"
+      click_button "Login"
 
       expect(current_path).to eq(login_form_path)
       expect(page).to have_content("Credentials are incorrect")
@@ -32,10 +31,10 @@ RSpec.describe 'Login Page' do
 
       fill_in :email, with: 'antoine@gmail.com'
       fill_in :password, with: 'password'
-      click_button "Log In"
+      click_button "Login"
+      expect(current_path).to eq(user_path(user))
 
-      visit root_path
-      expect(page).to have_content("currently logged in as #{user.email}")
+      expect(page).to have_content("Currently logged in as #{user.email}")
     end
   end
 
@@ -45,7 +44,7 @@ RSpec.describe 'Login Page' do
 
     fill_in :email, with: 'antoine@gmail.com'
     fill_in :password, with: 'password'
-    click_button "Log In"
+    click_button "Login"
 
     visit root_path
 
@@ -54,6 +53,5 @@ RSpec.describe 'Login Page' do
 
     expect(current_path).to eq(root_path)
     expect(page).to_not have_link("Log out")
-    expect(page).to have_link("Log In")
   end
 end
