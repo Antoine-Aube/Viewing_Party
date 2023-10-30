@@ -3,7 +3,7 @@
 class WelcomeController < ApplicationController
   def index
     @users = User.all
-    @top_movies = facade.top_20_movies
+    # @top_movies = facade.top_20_movies
   end
 
   private

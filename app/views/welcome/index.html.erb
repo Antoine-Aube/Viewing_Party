@@ -12,12 +12,6 @@
   <br>
   <p> Log in or create an account to create events and discover movies</p>
 
-<div class="flex flex-col items-center text-center mt-6 bg-gray-900">
-  <% @top_movies.each do |movie| %>
-    <div class="mb-4">
-     <p class="text-xl text-green-500 font-semibold"><%= movie.title %></p>
-      <%= image_tag("https://image.tmdb.org/t/p/w500#{movie.backdrop_path}", class: "w-full max-w-sm rounded shadow-md") %>
-    </div>
-  <% end %>
+
   </div>
 </div>
